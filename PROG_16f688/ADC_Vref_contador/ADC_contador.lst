@@ -1,0 +1,257 @@
+CCS PCM C Compiler, Version 4.104, 5967               19-jul.-17 02:22
+
+               Filename: C:\Users\juan carlos sierra\Desktop\PROYECTO GRADO\PROGRAMACION\PIC\PROG_16f688\ADC_Vref_contador\ADC_contador.lst
+
+               ROM used: 612 words (15%)
+                         Largest free fragment is 2048
+               RAM used: 16 (6%) at main() level
+                         30 (12%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  01
+0001:  MOVWF  0A
+0002:  GOTO   1B6
+0003:  NOP
+.................... #include <16f688.h>             // libreria del pic 
+.................... //////// Standard Header file for the PIC16F688 device //////////////// 
+.................... #device PIC16F688 
+.................... #list 
+....................  
+.................... #device adc=10                  // 10 bit 
+.................... #fuses hs,nowdt                 // xt para osc 4MHZ, hs para osc>4MHZ 
+.................... #use delay(clock=8M)            // clock=8000000 
+01A2:  MOVLW  2D
+01A3:  MOVWF  04
+01A4:  BCF    03.7
+01A5:  MOVF   00,W
+01A6:  BTFSC  03.2
+01A7:  GOTO   1B5
+01A8:  MOVLW  02
+01A9:  MOVWF  21
+01AA:  CLRF   20
+01AB:  DECFSZ 20,F
+01AC:  GOTO   1AB
+01AD:  DECFSZ 21,F
+01AE:  GOTO   1AA
+01AF:  MOVLW  97
+01B0:  MOVWF  20
+01B1:  DECFSZ 20,F
+01B2:  GOTO   1B1
+01B3:  DECFSZ 00,F
+01B4:  GOTO   1A8
+01B5:  RETURN
+....................  
+.................... void main() 
+.................... { 
+01B6:  CLRF   04
+01B7:  BCF    03.7
+01B8:  MOVLW  1F
+01B9:  ANDWF  03,F
+01BA:  BCF    1F.6
+01BB:  MOVLW  00
+01BC:  BSF    03.5
+01BD:  MOVWF  11
+01BE:  BCF    03.5
+01BF:  CLRF   1A
+01C0:  MOVLW  07
+01C1:  MOVWF  19
+01C2:  CLRF   25
+....................    int conteo=0;                             // el conteo inicia en 0 
+....................    long int value;                           //almacenamiento de variables de tipo entero 
+....................    float Vin;                                //voltajes decimales  
+....................    SETUP_ADC_PORTS(sAN2);                    //puertos a trabajar analogicamente y tension de referencia 
+01C3:  BCF    1F.6
+01C4:  MOVLW  04
+01C5:  BSF    03.5
+01C6:  MOVWF  11
+....................    SETUP_ADC_PORTS(VSS_VREF); 
+01C7:  BCF    03.5
+01C8:  BSF    1F.6
+01C9:  MOVLW  00
+01CA:  BSF    03.5
+01CB:  MOVWF  11
+....................    setup_adc(ADC_CLOCK_DIV_32);              //habilitar el modulo a/d con el reloj interno 
+01CC:  BCF    1F.4
+01CD:  BSF    1F.5
+01CE:  BCF    1F.6
+01CF:  BCF    03.5
+01D0:  BSF    1F.7
+01D1:  BSF    1F.0
+....................    
+....................    SET_TRIS_c(0x00);//ó (0b00000000)         // todos los pines del puerto c son de salida 
+01D2:  BSF    03.5
+01D3:  MOVWF  07
+....................    OUTPUT_c(0x00);//ó  (PIN_C2)              // el pin_c2 o todo el puerto c inicial abajo, limpia el puerto 
+01D4:  CLRF   07
+01D5:  BCF    03.5
+01D6:  CLRF   07
+....................        
+....................    while (true){ 
+....................       while (Vin>1){                      //garantizar que funcione solo cuando Vin sea mayor a 1 v 
+01D7:  CLRF   2F
+01D8:  CLRF   2E
+01D9:  CLRF   2D
+01DA:  MOVLW  7F
+01DB:  MOVWF  2C
+01DC:  MOVF   2B,W
+01DD:  MOVWF  33
+01DE:  MOVF   2A,W
+01DF:  MOVWF  32
+01E0:  MOVF   29,W
+01E1:  MOVWF  31
+01E2:  MOVF   28,W
+01E3:  MOVWF  30
+01E4:  CALL   004
+01E5:  BTFSS  03.0
+01E6:  GOTO   256
+....................       set_adc_channel(2);                  //habilitar el canal 0 Analogico de las entradas analogicas 
+01E7:  MOVLW  08
+01E8:  MOVWF  21
+01E9:  MOVF   1F,W
+01EA:  ANDLW  C3
+01EB:  IORWF  21,W
+01EC:  MOVWF  1F
+....................       delay_us(30);                        //minimo retardo para que se estabilice o cargue el capacitor 
+01ED:  MOVLW  13
+01EE:  MOVWF  20
+01EF:  DECFSZ 20,F
+01F0:  GOTO   1EF
+01F1:  GOTO   1F2
+....................       value=read_adc();                    //leer el valor del conversor y almacenar en la variable value 
+01F2:  BSF    1F.1
+01F3:  BTFSC  1F.1
+01F4:  GOTO   1F3
+01F5:  BSF    03.5
+01F6:  MOVF   1E,W
+01F7:  BCF    03.5
+01F8:  MOVWF  26
+01F9:  MOVF   1E,W
+01FA:  MOVWF  27
+....................       Vin=(3.3*value)/1024.0;              //es el valor en voltaje con formula de Vin 
+01FB:  MOVF   27,W
+01FC:  MOVWF  2D
+01FD:  MOVF   26,W
+01FE:  MOVWF  2C
+01FF:  GOTO   043
+0200:  MOVLW  33
+0201:  MOVWF  2F
+0202:  MOVWF  2E
+0203:  MOVLW  53
+0204:  MOVWF  2D
+0205:  MOVLW  80
+0206:  MOVWF  2C
+0207:  MOVF   23,W
+0208:  MOVWF  33
+0209:  MOVF   22,W
+020A:  MOVWF  32
+020B:  MOVF   21,W
+020C:  MOVWF  31
+020D:  MOVF   20,W
+020E:  MOVWF  30
+020F:  GOTO   061
+0210:  MOVF   20,W
+0211:  MOVWF  2C
+0212:  MOVF   21,W
+0213:  MOVWF  2D
+0214:  MOVF   22,W
+0215:  MOVWF  2E
+0216:  MOVF   23,W
+0217:  MOVWF  2F
+0218:  MOVWF  33
+0219:  MOVF   22,W
+021A:  MOVWF  32
+021B:  MOVF   21,W
+021C:  MOVWF  31
+021D:  MOVF   20,W
+021E:  MOVWF  30
+021F:  CLRF   37
+0220:  CLRF   36
+0221:  CLRF   35
+0222:  MOVLW  89
+0223:  MOVWF  34
+0224:  GOTO   0D7
+0225:  MOVF   23,W
+0226:  MOVWF  2B
+0227:  MOVF   22,W
+0228:  MOVWF  2A
+0229:  MOVF   21,W
+022A:  MOVWF  29
+022B:  MOVF   20,W
+022C:  MOVWF  28
+....................       
+....................       if (Vin >=2.8){ 
+022D:  MOVLW  33
+022E:  MOVWF  2F
+022F:  MOVWF  2E
+0230:  MOVWF  2D
+0231:  MOVLW  80
+0232:  MOVWF  2C
+0233:  MOVF   2B,W
+0234:  MOVWF  33
+0235:  MOVF   2A,W
+0236:  MOVWF  32
+0237:  MOVF   29,W
+0238:  MOVWF  31
+0239:  MOVF   28,W
+023A:  MOVWF  30
+023B:  CALL   004
+023C:  BTFSC  03.0
+023D:  GOTO   240
+023E:  BTFSS  03.2
+023F:  GOTO   248
+....................                 
+....................                output_c(0b00000000);       //colocar en bajo barios pines del puerto c en este caso 
+0240:  BSF    03.5
+0241:  CLRF   07
+0242:  BCF    03.5
+0243:  CLRF   07
+....................                delay_us(1000); 
+0244:  MOVLW  01
+0245:  MOVWF  2D
+0246:  CALL   1A2
+....................                conteo++; 
+0247:  INCF   25,F
+....................                                                
+....................         }if (conteo=12) { 
+0248:  MOVLW  0C
+0249:  MOVWF  25
+024A:  MOVF   25,F
+024B:  BTFSC  03.2
+024C:  GOTO   255
+....................                //while(1); 
+....................                conteo=0; 
+024D:  CLRF   25
+....................                delay_ms(300); 
+024E:  MOVLW  02
+024F:  MOVWF  2C
+0250:  MOVLW  96
+0251:  MOVWF  2D
+0252:  CALL   1A2
+0253:  DECFSZ 2C,F
+0254:  GOTO   250
+....................         }        
+....................         } 
+0255:  GOTO   1D7
+....................          output_c(0b00001000);   //colocar en alto barios pines del puerto c en este caso(c2, c3) 
+0256:  BSF    03.5
+0257:  CLRF   07
+0258:  MOVLW  08
+0259:  BCF    03.5
+025A:  MOVWF  07
+....................          delay_ms(300); 
+025B:  MOVLW  02
+025C:  MOVWF  2C
+025D:  MOVLW  96
+025E:  MOVWF  2D
+025F:  CALL   1A2
+0260:  DECFSZ 2C,F
+0261:  GOTO   25D
+....................    } 
+0262:  GOTO   1D7
+.................... } 
+....................  
+0263:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3FE2   HS NOPROTECT BROWNOUT MCLR NOCPD NOWDT PUT IESO FCMEN

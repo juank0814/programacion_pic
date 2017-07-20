@@ -1,0 +1,80 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+019.6   C1OUT
+019.7   C2OUT
+020     @SCRATCH
+021     @SCRATCH
+021     _RETURN_
+022     @SCRATCH
+023     @SCRATCH
+025     main.conteo
+026-027 main.value
+028-02B main.Vin
+02C-02F @MULFF.P1
+02C-02F @FLT.P2
+02C-02D @ITOF.P3
+02C     main.@SCRATCH1
+02D     @delay_ms1.P1
+02D     main.@SCRATCH2
+02E     main.@SCRATCH3
+02F     main.@SCRATCH4
+030-033 @FLT.P1
+030-033 @DIVFF.P2
+030-033 @MULFF.P3
+034-037 @DIVFF.P1
+034     @FLT.@SCRATCH1
+034     @MULFF.@SCRATCH1
+035     @FLT.@SCRATCH2
+035     @MULFF.@SCRATCH2
+036     @MULFF.@SCRATCH3
+037     @MULFF.@SCRATCH4
+038     @MULFF.@SCRATCH5
+038     @DIVFF.@SCRATCH1
+039     @DIVFF.@SCRATCH2
+03A     @DIVFF.@SCRATCH3
+03B     @DIVFF.@SCRATCH4
+03C     @DIVFF.@SCRATCH5
+03D     @DIVFF.@SCRATCH6
+09B-09C @READ_PROGRAM_MEMORY8.P1
+
+ROM Allocation:
+01A2  @delay_ms1
+01B6  main
+0004  @FLT
+0043  @ITOF
+0061  @MULFF
+00D7  @DIVFF
+01B6  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    C:\Users\juan carlos sierra\Desktop\PROYECTO GRADO\PROGRAMACION\PIC\PROG_16f688\ADC_Vref_contador\
+
+Project Files:
+    ADC_contador.c
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\devices\16f688.h
+
+Units:
+    C:\Users\juan carlos sierra\Desktop\PROYECTO GRADO\PROGRAMACION\PIC\PROG_16f688\ADC_Vref_contador\ADC_contador (main)
+
+Compiler Settings:
+    Processor:      PIC16F688
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      ADC_contador.err
+    Ext Symbols: ADC_contador.esym
+    INHX8:       ADC_contador.hex
+    Symbols:     ADC_contador.sym
+    List:        ADC_contador.lst
+    Debug/COFF:  ADC_contador.cof
+    Project:     ADC_contador.PJT
+    Call Tree:   ADC_contador.tre
+    Statistics:  ADC_contador.sta

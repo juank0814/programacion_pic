@@ -1,0 +1,49 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+019.6   C1OUT
+019.7   C2OUT
+020     @SCRATCH
+021     @SCRATCH
+021     _RETURN_
+022     @SCRATCH
+023     @SCRATCH
+025     @delay_ms1.P1
+09B-09C @READ_PROGRAM_MEMORY8.P1
+
+ROM Allocation:
+0004  @delay_ms1
+0018  main
+0018  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    C:\Users\juan carlos sierra\Desktop\PROYECTO GRADO\PROGRAMACION\PROG_16f688\encender_led\
+
+Project Files:
+    led_enciendeee.c
+    ..\..\..\..\..\..\..\Program Files (x86)\PICC\devices\16f688.h
+
+Units:
+    C:\Users\juan carlos sierra\Desktop\PROYECTO GRADO\PROGRAMACION\PROG_16f688\encender_led\led_enciendeee (main)
+
+Compiler Settings:
+    Processor:      PIC16F688
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      led_enciendeee.err
+    Ext Symbols: led_enciendeee.esym
+    INHX8:       led_enciendeee.hex
+    Symbols:     led_enciendeee.sym
+    List:        led_enciendeee.lst
+    Debug/COFF:  led_enciendeee.cof
+    Project:     led_enciendeee.PJT
+    Call Tree:   led_enciendeee.tre
+    Statistics:  led_enciendeee.sta

@@ -1,0 +1,24 @@
+[PROJECT]
+Target=C:\Users\juan carlos sierra\Desktop\PROYECTO GRADO\PROGRAMACION\PIC\PROG_16f688\ADC_Vref_contador\ADC_contador.hex
+Development_Mode=
+Processor_Text=PIC16F688
+ToolSuite=CCS
+Processor=0x6688
+[C:\Users\juan carlos sierra\Desktop\PROYECTO GRADO\PROGRAMACION\PIC\PROG_16f688\ADC_Vref_contador\ADC_contador]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+[mru-list]
+1=C:\Users\juan carlos sierra\Desktop\PROYECTO GRADO\PROGRAMACION\PIC\PROG_16f688\ADC_Vref_contador\ADC_contador.c
+[Windows]
+0=0000 %S 0 0 796 451 3 0
+[Units]
+Link=0
+Count=1
+1=C:\Users\juan carlos sierra\Desktop\PROYECTO GRADO\PROGRAMACION\PIC\PROG_16f688\ADC_Vref_contador\ADC_contador
+[Opened Files]
+1=ADC_contador.c
+2=

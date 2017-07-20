@@ -1,0 +1,219 @@
+CCS PCM C Compiler, Version 4.104, 5967               13-jul.-17 17:48
+
+               Filename: C:\Users\juan carlos sierra\Desktop\PROYECTO GRADO\PROGRAMACION\PROG_16f688\ADC_Vref\adc_vref.lst
+
+               ROM used: 581 words (14%)
+                         Largest free fragment is 2048
+               RAM used: 15 (6%) at main() level
+                         29 (11%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  01
+0001:  MOVWF  0A
+0002:  GOTO   1B7
+0003:  NOP
+.................... #include <16f688.h>             // libreria del pic 
+.................... //////// Standard Header file for the PIC16F688 device //////////////// 
+.................... #device PIC16F688 
+.................... #list 
+....................  
+.................... #device adc=10                  // 10 bit 
+.................... #fuses hs,nowdt                 // xt para osc 4MHZ, hs para osc>4MHZ 
+.................... #use delay(clock=8M)            // clock=8000000 
+01A3:  MOVLW  2C
+01A4:  MOVWF  04
+01A5:  BCF    03.7
+01A6:  MOVF   00,W
+01A7:  BTFSC  03.2
+01A8:  GOTO   1B6
+01A9:  MOVLW  02
+01AA:  MOVWF  21
+01AB:  CLRF   20
+01AC:  DECFSZ 20,F
+01AD:  GOTO   1AC
+01AE:  DECFSZ 21,F
+01AF:  GOTO   1AB
+01B0:  MOVLW  97
+01B1:  MOVWF  20
+01B2:  DECFSZ 20,F
+01B3:  GOTO   1B2
+01B4:  DECFSZ 00,F
+01B5:  GOTO   1A9
+01B6:  RETURN
+....................  
+.................... void main() 
+.................... { 
+01B7:  CLRF   04
+01B8:  BCF    03.7
+01B9:  MOVLW  1F
+01BA:  ANDWF  03,F
+01BB:  BCF    1F.6
+01BC:  MOVLW  00
+01BD:  BSF    03.5
+01BE:  MOVWF  11
+01BF:  BCF    03.5
+01C0:  CLRF   1A
+01C1:  MOVLW  07
+01C2:  MOVWF  19
+....................    long int value;                           //almacenamiento de variables de tipo entero 
+....................    float Vin;                                //voltajes decimales  
+....................    SETUP_ADC_PORTS(sAN2);                    //puertos a trabajar analogicamente y tension de referencia 
+01C3:  BCF    1F.6
+01C4:  MOVLW  04
+01C5:  BSF    03.5
+01C6:  MOVWF  11
+....................    SETUP_ADC_PORTS(VSS_VREF); 
+01C7:  BCF    03.5
+01C8:  BSF    1F.6
+01C9:  MOVLW  00
+01CA:  BSF    03.5
+01CB:  MOVWF  11
+....................    setup_adc(ADC_CLOCK_DIV_32);              //habilitar el modulo a/d con el reloj interno 
+01CC:  BCF    1F.4
+01CD:  BSF    1F.5
+01CE:  BCF    1F.6
+01CF:  BCF    03.5
+01D0:  BSF    1F.7
+01D1:  BSF    1F.0
+....................    
+....................    SET_TRIS_c(0x00);//ó (0b00000000)         // todos los pines del puerto c son de salida 
+01D2:  BSF    03.5
+01D3:  MOVWF  07
+....................    OUTPUT_c(0x00);//ó  (PIN_C2)              // el pin_c2 o todo el puerto c inicial abajo, limpia el puerto 
+01D4:  CLRF   07
+01D5:  BCF    03.5
+01D6:  CLRF   07
+....................        
+....................    while (true) 
+....................    { 
+....................       set_adc_channel(2);                  //habilitar el canal 0 Analogico de las entradas analogicas 
+01D7:  MOVLW  08
+01D8:  MOVWF  21
+01D9:  MOVF   1F,W
+01DA:  ANDLW  C3
+01DB:  IORWF  21,W
+01DC:  MOVWF  1F
+....................       delay_us(30);                        //minimo retardo para que se estabilice o cargue el capacitor 
+01DD:  MOVLW  13
+01DE:  MOVWF  20
+01DF:  DECFSZ 20,F
+01E0:  GOTO   1DF
+01E1:  GOTO   1E2
+....................       value=read_adc();                    //leer el valor del conversor y almacenar en la variable value 
+01E2:  BSF    1F.1
+01E3:  BTFSC  1F.1
+01E4:  GOTO   1E3
+01E5:  BSF    03.5
+01E6:  MOVF   1E,W
+01E7:  BCF    03.5
+01E8:  MOVWF  25
+01E9:  MOVF   1E,W
+01EA:  MOVWF  26
+....................       Vin=(3.3*value)/1024.0;              //es el valor en voltaje con formula de Vin 
+01EB:  MOVF   26,W
+01EC:  MOVWF  2C
+01ED:  MOVF   25,W
+01EE:  MOVWF  2B
+01EF:  GOTO   004
+01F0:  MOVLW  33
+01F1:  MOVWF  2E
+01F2:  MOVWF  2D
+01F3:  MOVLW  53
+01F4:  MOVWF  2C
+01F5:  MOVLW  80
+01F6:  MOVWF  2B
+01F7:  MOVF   23,W
+01F8:  MOVWF  32
+01F9:  MOVF   22,W
+01FA:  MOVWF  31
+01FB:  MOVF   21,W
+01FC:  MOVWF  30
+01FD:  MOVF   20,W
+01FE:  MOVWF  2F
+01FF:  GOTO   022
+0200:  MOVF   20,W
+0201:  MOVWF  2B
+0202:  MOVF   21,W
+0203:  MOVWF  2C
+0204:  MOVF   22,W
+0205:  MOVWF  2D
+0206:  MOVF   23,W
+0207:  MOVWF  2E
+0208:  MOVWF  32
+0209:  MOVF   22,W
+020A:  MOVWF  31
+020B:  MOVF   21,W
+020C:  MOVWF  30
+020D:  MOVF   20,W
+020E:  MOVWF  2F
+020F:  CLRF   36
+0210:  CLRF   35
+0211:  CLRF   34
+0212:  MOVLW  89
+0213:  MOVWF  33
+0214:  GOTO   098
+0215:  MOVF   23,W
+0216:  MOVWF  2A
+0217:  MOVF   22,W
+0218:  MOVWF  29
+0219:  MOVF   21,W
+021A:  MOVWF  28
+021B:  MOVF   20,W
+021C:  MOVWF  27
+....................       
+....................       if (Vin >= 1){ 
+021D:  CLRF   2E
+021E:  CLRF   2D
+021F:  CLRF   2C
+0220:  MOVLW  7F
+0221:  MOVWF  2B
+0222:  MOVF   2A,W
+0223:  MOVWF  32
+0224:  MOVF   29,W
+0225:  MOVWF  31
+0226:  MOVF   28,W
+0227:  MOVWF  30
+0228:  MOVF   27,W
+0229:  MOVWF  2F
+022A:  GOTO   163
+022B:  BTFSC  03.0
+022C:  GOTO   22F
+022D:  BTFSS  03.2
+022E:  GOTO   237
+....................                output_c(0b00000000);       //colocar en bajo barios pines del puerto c en este caso 
+022F:  BSF    03.5
+0230:  CLRF   07
+0231:  BCF    03.5
+0232:  CLRF   07
+....................                delay_us(1000); 
+0233:  MOVLW  01
+0234:  MOVWF  2C
+0235:  CALL   1A3
+....................                                 
+....................         }else { 
+0236:  GOTO   243
+....................                output_c(0b00001100);   //colocar en alto barios pines del puerto c en este caso(c2, c3) 
+0237:  BSF    03.5
+0238:  CLRF   07
+0239:  MOVLW  0C
+023A:  BCF    03.5
+023B:  MOVWF  07
+....................                delay_ms(300); 
+023C:  MOVLW  02
+023D:  MOVWF  2B
+023E:  MOVLW  96
+023F:  MOVWF  2C
+0240:  CALL   1A3
+0241:  DECFSZ 2B,F
+0242:  GOTO   23E
+....................                  
+....................         } 
+....................    } 
+0243:  GOTO   1D7
+.................... } 
+....................  
+0244:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3FE2   HS NOPROTECT BROWNOUT MCLR NOCPD NOWDT PUT IESO FCMEN

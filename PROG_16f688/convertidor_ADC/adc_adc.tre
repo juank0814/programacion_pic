@@ -1,0 +1,10 @@
+읕adc_adc
+   읕main  0/137  Ram=10
+      쳐??0??
+      쳐@delay_ms1  0/20  Ram=1
+      쳐@ITOF  0/30  Ram=2
+      쳐@MULFF  0/118  Ram=13
+      쳐@DIVFF  0/203  Ram=14
+      쳐@FLT  0/64  Ram=10
+      쳐@delay_ms1  0/20  Ram=1
+      읕@delay_ms1  0/20  Ram=1

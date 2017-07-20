@@ -1,0 +1,48 @@
+
+ROM used: 576 (14%)
+          576 (14%) including unused fragments
+
+          2 Average locations per line
+          34 Average locations per statement
+
+RAM used: 15 (6%) at main() level
+          29 (11%) worst case
+
+Stack used: 1 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   39    17 100  adc_adc.c
+  279     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\devices\16f688.h
+----- -----
+  318    17 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     20   3   1             @delay_ms1
+0    137  24  10   409  4.6  main
+0     30   5   2             @ITOF
+0    118  20  13             @MULFF
+0    203  35  14             @DIVFF
+0     64  11  10             @FLT
+
+Program metrics:
+    Functions               1
+    Statements              17
+    Comments                79
+    Volume (V)              420
+    Difficilty (D)          4.0
+    Effort to implement (E) 1689
+    Time to implement (T)   2 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    140
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   572  1472  
+00800-00FFF     0  2048  
+
+
+

@@ -1,0 +1,79 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+019.6   C1OUT
+019.7   C2OUT
+020     @SCRATCH
+021     @SCRATCH
+021     _RETURN_
+022     @SCRATCH
+023     @SCRATCH
+025-026 main.value
+027-02A main.Vin
+02B-02E @MULFF.P1
+02B-02C @ITOF.P2
+02B-02E @FLT.P3
+02B     main.@SCRATCH1
+02C     @delay_ms1.P1
+02C     main.@SCRATCH2
+02D     main.@SCRATCH3
+02E     main.@SCRATCH4
+02F-032 @MULFF.P1
+02F-032 @FLT.P2
+02F-032 @DIVFF.P3
+033-036 @DIVFF.P1
+033     @MULFF.@SCRATCH1
+033     @FLT.@SCRATCH1
+034     @MULFF.@SCRATCH2
+034     @FLT.@SCRATCH2
+035     @MULFF.@SCRATCH3
+036     @MULFF.@SCRATCH4
+037     @MULFF.@SCRATCH5
+037     @DIVFF.@SCRATCH1
+038     @DIVFF.@SCRATCH2
+039     @DIVFF.@SCRATCH3
+03A     @DIVFF.@SCRATCH4
+03B     @DIVFF.@SCRATCH5
+03C     @DIVFF.@SCRATCH6
+09B-09C @READ_PROGRAM_MEMORY8.P1
+
+ROM Allocation:
+0004  @delay_ms1
+01B7  main
+0018  @ITOF
+0036  @MULFF
+00AC  @DIVFF
+0177  @FLT
+01B7  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    C:\Users\juan carlos sierra\Desktop\PROYECTO GRADO\PROGRAMACION\prog_16f688\convertidor_ADC\
+
+Project Files:
+    adc_adc.c
+    ..\..\..\..\..\..\..\Program Files (x86)\PICC\devices\16f688.h
+
+Units:
+    C:\Users\juan carlos sierra\Desktop\PROYECTO GRADO\PROGRAMACION\prog_16f688\convertidor_ADC\adc_adc (main)
+
+Compiler Settings:
+    Processor:      PIC16F688
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      adc_adc.err
+    Ext Symbols: adc_adc.esym
+    INHX8:       adc_adc.hex
+    Symbols:     adc_adc.sym
+    List:        adc_adc.lst
+    Debug/COFF:  adc_adc.cof
+    Project:     adc_adc.PJT
+    Call Tree:   adc_adc.tre
+    Statistics:  adc_adc.sta

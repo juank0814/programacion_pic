@@ -1,0 +1,104 @@
+CCS PCM C Compiler, Version 4.104, 5967               12-jul.-17 11:55
+
+               Filename: C:\Users\juan carlos sierra\Desktop\PROYECTO GRADO\PROGRAMACION\PROG_16f688\encender_led\led_enciendeee.lst
+
+               ROM used: 59 words (1%)
+                         Largest free fragment is 2048
+               RAM used: 5 (2%) at main() level
+                         6 (2%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   018
+0003:  NOP
+.................... #include <16f688.h>               // libreria del pic 
+.................... //////// Standard Header file for the PIC16F688 device //////////////// 
+.................... #device PIC16F688 
+.................... #list 
+....................  
+.................... #fuses hs,nowdt                   // xt para osc 4MHZ, hs para osc>4MHZ 
+.................... #use delay(clock=8M)              // clock=20000000 
+0004:  MOVLW  25
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   017
+000A:  MOVLW  02
+000B:  MOVWF  21
+000C:  CLRF   20
+000D:  DECFSZ 20,F
+000E:  GOTO   00D
+000F:  DECFSZ 21,F
+0010:  GOTO   00C
+0011:  MOVLW  97
+0012:  MOVWF  20
+0013:  DECFSZ 20,F
+0014:  GOTO   013
+0015:  DECFSZ 00,F
+0016:  GOTO   00A
+0017:  RETURN
+....................  
+.................... void main() 
+.................... { 
+0018:  CLRF   04
+0019:  BCF    03.7
+001A:  MOVLW  1F
+001B:  ANDWF  03,F
+001C:  BCF    1F.6
+001D:  MOVLW  00
+001E:  BSF    03.5
+001F:  MOVWF  11
+0020:  BCF    03.5
+0021:  CLRF   1A
+0022:  MOVLW  07
+0023:  MOVWF  19
+....................  
+....................    SET_TRIS_c(0x00);//ó (0b00000000)     // todos los pines del puerto c son de salida 
+0024:  MOVLW  00
+0025:  BSF    03.5
+0026:  MOVWF  07
+....................    //SET_TRIS_c(0b11111111);             // todos los pines del puerto c son de entrada 
+....................    //SET_TRIS_c(0b11110000;              // pines B7-B4 son de entrada y pines B3-B0 son de salida 
+....................     
+....................    OUTPUT_c(PIN_C2);//ó  (0x00)          // el pin_c2 o todo el puerto c inicial abajo, limpia el puerto 
+0027:  CLRF   07
+0028:  MOVLW  3A
+0029:  BCF    03.5
+002A:  MOVWF  07
+....................    //INPUT_c(PIN_C2);//ó (0x00)          // el pin_c2 o todo el puerto c inicial abajo 
+....................  
+....................    while(true) 
+....................    { 
+....................       OUTPUT_HIGH(PIN_C2);               // colocar en alto el pin_c2 
+002B:  BSF    03.5
+002C:  BCF    07.2
+002D:  BCF    03.5
+002E:  BSF    07.2
+....................       //output_c(0b00001100);            //ó colocar en alto barios pines del puerto c en este caso(c2, c3) 
+....................       delay_ms(200); 
+002F:  MOVLW  C8
+0030:  MOVWF  25
+0031:  CALL   004
+....................        
+....................       OUTPUT_LOW(PIN_C2);                // colocar en bajo el pin_c2 
+0032:  BSF    03.5
+0033:  BCF    07.2
+0034:  BCF    03.5
+0035:  BCF    07.2
+....................       //output_c(0b00000000);            //ó colocar en bajo barios pines del puerto c  
+....................       delay_ms(200); 
+0036:  MOVLW  C8
+0037:  MOVWF  25
+0038:  CALL   004
+....................    } 
+0039:  GOTO   02B
+.................... } 
+....................  
+....................  
+003A:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3FE2   HS NOPROTECT BROWNOUT MCLR NOCPD NOWDT PUT IESO FCMEN
